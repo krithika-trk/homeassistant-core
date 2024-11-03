@@ -16,7 +16,6 @@ import logging
 import math
 from operator import contains
 import pathlib
-import random
 import re
 import statistics
 from struct import error as StructError, pack, unpack_from
@@ -92,6 +91,7 @@ from . import (
 from .singleton import singleton
 from .translation import async_translate_state
 from .typing import TemplateVarsType
+import secrets
 
 # mypy: allow-untyped-defs, no-check-untyped-defs
 
@@ -2442,7 +2442,7 @@ def random_every_time(context, values):
     Unlike Jinja's random filter,
     this is context-dependent to avoid caching the chosen value.
     """
-    return random.choice(values)
+    return secrets.choice(values)
 
 
 def today_at(hass: HomeAssistant, time_str: str = "") -> datetime:
